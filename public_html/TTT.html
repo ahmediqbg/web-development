@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+
+    <html lang="en">
+    <head>
+        <title>McCown's Tic-Tac-Toe</title>
+        <meta charset="utf-8">
+        
+        <script>
+            var humansTurn = true;
+
+            // Called when the user clicks on a box in the game board
+            function makeMove(e) {
+                var box = e.target;    // e.target is the box that was clicked on
+                if(box.innerHTML==""&&humansTurn==true && gameOver()==false){
+                    humansTurn=false;
+                    box.classList.add("x");
+                    box.innerHTML = "X";
+                    if(gameOver()==true)
+                        humansTurn = false;
+                    else{
+                        document.getElementById("turnInfo").innerHTML = "Computer's turn";
+                        var timerId = setTimeout(makeComputerMove, 1000);
+                    }
+                }
+            }
+
+            // Put an O at a randomly selected location
+            function makeComputerMove() {
+                // Keep count of how many times we try to pick an unoccuppied slot so we avoid
+                // accidentally getting stuck in the loop
+                var count = 0;
+                var move;
+                var playerAtLocation;
+                do {
+                    // Get a random number between 1 and 9
+                    move = Math.floor(Math.random() * 9) + 1;
+                    count++;
+                    playerAtLocation = document.querySelector("#c" + move).innerHTML;
+                } while (playerAtLocation !== "" && count < 100);
+
+                if (count == 100) {
+                    document.getElementById("turnInfo").innerHTML = "It's a Tie!";
+                }
+                else {
+                    var box = document.querySelector("#c" + move);
+                    if(humansTurn==false && gameOver()==false){
+                        humansTurn=true;
+                        box.classList.add("o");
+                        box.innerHTML = "O";
+                        if(gameOver()==true){
+                            humansTurn = false;
+                        }
+                        else{
+                            document.getElementById("turnInfo").innerHTML = "Your turn";
+                        }
+                    }
+                }
+            }
+            
+            function gameOver(){
+                var isOver = false;
+                var boxArray = document.querySelectorAll("div");
+                var i;
+                
+                //X's in columns
+                for(i=0; boxArray[i+1].innerHTML=="X" && i<7; i+=3){
+                    if(i==6){
+                        document.getElementById("turnInfo").innerHTML = "You Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+2].innerHTML=="X" && i<8; i+=3){
+                    if(i==6){
+                        document.getElementById("turnInfo").innerHTML = "You Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+3].innerHTML=="X" && i<9; i+=3){
+                    if(i==6){
+                        document.getElementById("turnInfo").innerHTML = "You Won!";
+                        isOver = true;
+                    }
+                }
+
+                //0's in columns
+                for(i=0; boxArray[i+1].innerHTML=="O" && i<7; i+=3){
+                    if(i==6){
+                        document.getElementById("turnInfo").innerHTML = "Computer Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+2].innerHTML=="O" && i<8; i+=3){
+                    if(i==6){
+                        document.getElementById("turnInfo").innerHTML = "Computer Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+3].innerHTML=="O" && i<9; i+=3){
+                    if(i==6){
+                        document.getElementById("turnInfo").innerHTML = "Computer Won!";
+                        isOver = true;
+                    }
+                }
+
+                //X's in rows
+                for(i=0; boxArray[i+1].innerHTML=="X" && i<3; i++){
+                    if(i==2){
+                        document.getElementById("turnInfo").innerHTML = "You Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+4].innerHTML=="X" && i<3; i++){
+                    if(i==2){
+                        document.getElementById("turnInfo").innerHTML = "You Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+7].innerHTML=="X" && i<3; i++){
+                    if(i==2){
+                        document.getElementById("turnInfo").innerHTML = "You Won!";
+                        isOver = true;
+                    }
+                }
+
+                //0's in rows
+                for(i=0; boxArray[i+1].innerHTML=="O" && i<3; i++){
+                    if(i==2){
+                        document.getElementById("turnInfo").innerHTML = "Computer Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+4].innerHTML=="O" && i<3; i++){
+                    if(i==2){
+                        document.getElementById("turnInfo").innerHTML = "Computer Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+7].innerHTML=="O" && i<3; i++){
+                    if(i==2){
+                        document.getElementById("turnInfo").innerHTML = "Computer Won!";
+                        isOver = true;
+                    }
+                }
+
+                 //X's in diagonal
+                 for(i=0; boxArray[i+1].innerHTML=="X" && i<9; i+=4){
+                    if(i==8){
+                        document.getElementById("turnInfo").innerHTML = "You Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+3].innerHTML=="X" && i<5; i+=2){
+                    if(i==4){
+                        document.getElementById("turnInfo").innerHTML = "You Won!";
+                        isOver = true;
+                    }
+                }
+
+                //0's in diagonal
+                for(i=0; boxArray[i+1].innerHTML=="O" && i<9; i+=4){
+                    if(i==8){
+                        document.getElementById("turnInfo").innerHTML = "Computer Won!";
+                        isOver = true;
+                    }
+                }
+                for(i=0; boxArray[i+3].innerHTML=="O" && i<5; i+=2){
+                    if(i==4){
+                        document.getElementById("turnInfo").innerHTML = "Computer Won!";
+                        isOver = true;
+                    }
+                }
+                return isOver;
+            }
+
+
+            // Called when the DOM finishes loading
+            function start() {
+                document.getElementById("turnInfo").innerHTML = "Your turn";
+
+                // Register all event handlers/listeners
+                for (var i = 1; i <= 9; i++) {
+                    document.querySelector("#c" + i).addEventListener("click", makeMove);
+                }
+                var newGame = document.querySelector("input").addEventListener("click", function(){
+                    for (var i = 1; i <= 9; i++) {
+                        document.querySelector("#c" + i).classList.remove("x");
+                        document.querySelector("#c" + i).classList.remove("o");
+                        document.querySelector("#c" + i).innerHTML = "";    
+                    }
+                    document.getElementById("turnInfo").innerHTML = "Your turn";
+                    humansTurn = true;
+                })
+            }
+            
+            // Call start after DOM finishes loading
+            window.addEventListener("DOMContentLoaded", start);
+
+        </script>
+        
+        <style>
+            
+             body {
+                font-family: arial, sans-serif;
+            }
+            
+            #board {
+                font-size: 85px;    
+                display: grid;
+                grid-template-columns: 100px 100px 100px;
+                grid-template-rows: 100px 100px 100px;
+                grid-gap: 10px;
+            }
+            
+            #board > div {
+                border: 1px solid LightSkyBlue;
+                text-align: center;
+            }
+            
+            #board > div:hover {
+                border-color: blue;
+            }   
+                
+            .x {
+                color: red;
+            }
+            
+            .o {
+                color: blue;
+            }
+            
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>Tic-Tac-Toe</h1>
+
+        <div id="board">
+            <div id="c1"></div>
+            <div id="c2"></div>
+            <div id="c3"></div>
+            <div id="c4"></div>
+            <div id="c5"></div>
+            <div id="c6"></div>
+            <div id="c7"></div>
+            <div id="c8"></div>
+            <div id="c9"></div>
+        </div>
+
+        <p id="turnInfo">
+            TURN INFO
+        </p>
+
+        <p>
+            <input type="button" value="New Game" id="newGameBtn">
+        </p>
+
+    </body>
+</html>

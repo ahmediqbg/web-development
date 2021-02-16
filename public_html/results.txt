@@ -1,0 +1,6 @@
+course-web M
+course-net M
+course-web F
+course-net F
+course-gui F
+course-oop F

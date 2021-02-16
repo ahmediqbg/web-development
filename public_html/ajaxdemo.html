@@ -1,0 +1,30 @@
+<h1> Ajax Demo</h1>
+
+<p></p>
+
+<script>
+
+//make a request to http://taz.harding.edu/~aabdulamir/datetime.php
+
+let xhr = new XMLHttpRequest();
+function makeRequest() { 
+xhr.addEventListener("load", responseRecieved);
+xhr.open("GET", "/~aabdulamir/datetime.php");
+xhr.send();
+}
+
+
+setInterval(makeRequest,1000);
+ 
+function responseRecieved() {
+    //called when http
+
+    document.querySelector("p").innerHTML = xhr.responseText;
+    console.log(xhr.responseText);
+}
+
+</script>
+
+
+
+setInterval

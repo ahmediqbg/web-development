@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<!-- survey.html -->
+
+<head>
+  <title>Student Survey</title>
+  <style>
+    div {
+      margin-bottom: 15px;
+    }
+
+    .prompt {
+      display: inline-block;
+      width: 150px;
+      vertical-align: top;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>Please Enter the Following Information:</h3>
+  <form method="post" action="survey.php">
+    <input type="hidden" name="input-source" value="Secret Survey">
+    <div>
+      <label class="prompt" for="name">Name:</label>
+      <input type="text" name="name" id="name" size="30">
+    </div>
+    <div>
+      <label class="prompt" for="class">Classification:</label>
+      <select name="class" id="class">
+        <option>Freshman</option>
+        <option selected>Sophomore</option>
+        <option>Junior</option>
+        <option>Senior</option>
+      </select>
+    </div>
+    <div>
+      <label class="prompt">Gender:</label>
+      <label for = "Male"><input type="radio" id="Male" name="gender" value="M" checked>Male</label>
+      <label for = "Female"><input type="radio" id="Female" name="gender" value="F">Female</label>
+    </div>
+    <div>
+      <label class="prompt" for="email">E-mail address:</label>
+      <input type="text" name="email" id="email" size="30">
+    </div>
+    <div>
+      <label class="prompt" for="password">Password:</label>
+      <input type="password" id="password" name="pword">
+    </div>
+    <div>
+      <label class="prompt">Favorite CS courses:</label>
+      <label>
+        <input type="checkbox" name="courses[]" value="course-web">Web Development &nbsp;
+      </label>
+      <label>
+        <input type="checkbox" name="courses[]" value="course-net">Networking &nbsp;
+      </label>
+      <label>
+        <input type="checkbox" name="courses[]" value="course-gui">GUI &nbsp;
+      </label>
+      <label>
+        <input type="checkbox" name="courses[]" value="course-oop">OOP
+      </label>
+    </div>
+    <div>
+      <label class="prompt">Graduating this spring:</label>
+      <label for="grad1"><input type="radio" id="grad1" name="grad" value="Yes" checked>Yes</label>
+      <label for="grad2"><input type="radio" id="grad2" name="grad" value="No">No</label>
+    </div>
+    <div>
+      <label class="prompt" for="comments">Comments:</label>
+      <textarea name="comments" id="comments" rows="3" cols="50"
+        placeholder="Other information we should know?"></textarea>
+    </div>
+    <div>
+      <input type="submit" value="Submit Survey">
+      <input type="reset" value="Clear Form">
+    </div>
+  </form>
+  <p>Thank you!</p>
+</body>
+
+</html>

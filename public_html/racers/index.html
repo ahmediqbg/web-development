@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="doorprize.js"></script>
+        <style>
+
+        </style>
+
+    </head>
+
+
+    <body>
+        <h1>Race Game</h1>
+		<!-- PAGE 1-->
+        <div id="EnterNamesBox" style="display:block">
+            <h2>Enter Names</h2>
+            <textarea id="MyInput" rows="30" cols="35"></textarea>
+            <br>
+            <input type="button" value="Pick Contestants" id="pickBtn">
+        </div>
+
+
+
+
+        <!--PAGE 2-->
+        <div id="Players_Screen" style="display:none">
+
+            <input type="button" value="Start" id="StartButton">
+            <input type="button" value="Cancel" id="CancelButton">
+
+
+            <ul>
+                <p id="name1" style="list-style-type: none; margin-left:0px"></p>
+                <br>
+                <p id="name2" style="list-style-type: none; margin-left:0px"></p>
+                <br>
+                <p id="name3" style="list-style-type: none; margin-left:0px"></p>
+                <br>
+                <p id="name4" style="list-style-type: none; margin-left:0px"></p>
+                <br>
+                <p id="name5" style="list-style-type: none; margin-left:0px"></p>
+            </ul>
+        </div>
+
+
+        <!--the race-->
+        <div id="pageRace" style="display:none">
+
+            <div id="startRace"><h2 id="go" style="color: red">READY!!</h2></div>
+            <ul>
+                <li id="player1" style="list-style-type: none; margin-left:0px"><img src="ball1.png"></li>
+                <br>
+                <li id="player2" style="list-style-type: none; margin-left:0px"><img src="ball2.png"></li>
+                <br>
+                <li id="player3" style="list-style-type: none; margin-left:0px"><img src="ball3.png"></li>
+                <br>
+                <li id="player4" style="list-style-type: none; margin-left:0px"><img src="ball4.png"></li>
+            </ul>
+
+
+
+            <audio id="begin">
+                <source src="song.wav" type="audio/mp3">
+            </audio>
+        </div>
+
+
+        <!-- winner PAGE-->
+        <div id="pageWin" class="setlocate" style="display:none">
+            <h2><strong>Winner</strong></h2>
+            <img id="winner">
+            <br>
+            <p>Congratulations, <strong id="winnerName"></strong></p>
+            <br>
+            <input type="button" value="New Game" id="NewGameButton">
+        </div>
+    </body>
+</html>
