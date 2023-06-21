@@ -19,10 +19,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['username'] == 'bsmith' &&
         $_POST['password'] == 'opensesame') {
-            echo "WELCOME!"
+            echo "WELCOME!";
         }
 }
-
+?>
 
 
 <div>
